@@ -1,103 +1,230 @@
-import Image from "next/image";
+'use client';
+
+import HeroSection from './components/hero/HeroSection';
+import { Button, GlassmorphicCard, RealmTag, ParallaxGrid } from './components/ui';
+import RecursionRing from './components/animations/RecursionRing';
+import LoopDiagram from './components/animations/LoopDiagram';
+import FeatureCard from './components/ui/FeatureCard';
+import StatsDashboard from './components/dashboard/StatsDashboard';
+import {
+  ConsciousnessIcon,
+  RecursionIcon,
+  CommunityIcon,
+  ProtocolIcon,
+  RealityIcon,
+  TransformIcon,
+} from './components/icons';
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="bg-primary min-h-screen">
+      {/* Hero Section with Mission Statement */}
+      <HeroSection
+        title="Genesis Parallel Protocol"
+        subtitle="Decentralized Loop Economics"
+        description="A parallel civilizational protocol built on recursive economic loops, decentralized autonomous governance, and memetic structures. Join us in creating self-sustaining communities through shared cognitive and emotional patterns."
+        realm="foundation"
+      >
+        <Button variant="primary" size="lg" glowEffect>
+          Start Your Loop
+        </Button>
+        <Button variant="accent" size="lg">
+          Explore Protocols
+        </Button>
+      </HeroSection>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Interactive Loop Visualization Section */}
+      <section className="relative py-20 px-4">
+        <ParallaxGrid gridSize={60} color="signal" opacity={0.05} />
+        
+        <div className="relative z-10 container mx-auto max-w-7xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-ink mb-4">
+              The Infinite Loop Architecture
+            </h2>
+            <p className="text-xl text-gray max-w-3xl mx-auto">
+              Experience the power of recursive economic loops and decentralized coordination
+            </p>
+          </div>
+
+          {/* Central Loop Diagram */}
+          <div className="flex justify-center mb-20">
+            <GlassmorphicCard blur="lg" className="p-8 md:p-12">
+              <LoopDiagram 
+                size={400} 
+                color="accent" 
+                speed={3} 
+                showLabels 
+                interactive 
+                className="mx-auto"
+              />
+            </GlassmorphicCard>
+          </div>
+
+          {/* Quick Action Feature Cards */}
+          <div className="mb-20">
+            <h3 className="text-3xl font-display font-semibold text-center text-ink mb-12">
+              Core Protocol Features
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <FeatureCard
+                icon={<RecursionIcon size={56} />}
+                title="Loop Economics"
+                description="Create self-sustaining economic loops that generate value through recursive patterns and community coordination."
+                action={{
+                  label: "Explore Loops",
+                  onClick: () => console.log('Navigate to economics'),
+                }}
+                color="accent"
+                delay={0.1}
+              />
+              
+              <FeatureCard
+                icon={<ProtocolIcon size={56} />}
+                title="Decentralized Governance"
+                description="Participate in autonomous decision-making through distributed consensus and collective intelligence frameworks."
+                action={{
+                  label: "Join Governance",
+                  onClick: () => console.log('Navigate to governance'),
+                }}
+                color="signal"
+                delay={0.2}
+              />
+              
+              <FeatureCard
+                icon={<CommunityIcon size={56} />}
+                title="Community Networks"
+                description="Join autonomous communities working together through shared protocols and collaborative resource management."
+                action={{
+                  label: "Join Network",
+                  onClick: () => console.log('Navigate to community'),
+                }}
+                color="danger"
+                delay={0.3}
+              />
+              
+              <FeatureCard
+                icon={<TransformIcon size={56} />}
+                title="Memetic Architecture"
+                description="Build and propagate ideas through shared cognitive patterns and emotional loops that strengthen community bonds."
+                action={{
+                  label: "Explore Memetics",
+                  onClick: () => console.log('Navigate to memetics'),
+                }}
+                color="ink"
+                delay={0.4}
+              />
+              
+              <FeatureCard
+                icon={<ProtocolIcon size={56} />}
+                title="Resource Coordination"
+                description="Efficiently manage and distribute resources through decentralized networks and collaborative decision-making."
+                action={{
+                  label: "View Resources",
+                  onClick: () => console.log('Navigate to resources'),
+                }}
+                color="accent"
+                delay={0.5}
+              />
+              
+              <FeatureCard
+                icon={<CommunityIcon size={56} />}
+                title="Rapid Response"
+                description="Coordinate community responses to incidents through real-time alerts and decentralized action networks."
+                action={{
+                  label: "Join Response",
+                  onClick: () => console.log('Navigate to rapid-response'),
+                }}
+                color="signal"
+                delay={0.6}
+              />
+              
+              <FeatureCard
+                icon={<ProtocolIcon size={56} />}
+                title="FOIA Mills"
+                description="Automate Freedom of Information Act requests, track responses, and analyze government data for transparency."
+                action={{
+                  label: "Start FOIA Request",
+                  onClick: () => window.location.href = '/foia',
+                }}
+                color="danger"
+                delay={0.7}
+              />
+            </div>
+          </div>
+
+          {/* Statistics Dashboard */}
+          <StatsDashboard
+            title="Community Impact Metrics"
+            stats={[
+              { label: "Active Loops", value: 12847, color: "accent" },
+              { label: "Community Nodes", value: 3421, color: "signal" },
+              { label: "Resources Shared", value: 89234, color: "danger" },
+              { label: "Governance Actions", value: 9999, suffix: "+", color: "ink" },
+            ]}
+            className="mb-20"
+          />
+
+          {/* Loop Process Explanation */}
+          <div className="mb-20">
+            <GlassmorphicCard blur="md" className="p-12">
+              <h3 className="text-3xl font-display font-semibold text-center text-ink mb-12">
+                The Loop Process
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+                {[
+                  { phase: "Input", description: "Resources enter the loop", color: "accent" },
+                  { phase: "Process", description: "Value transformation begins", color: "signal" },
+                  { phase: "Output", description: "Community benefit emerges", color: "danger" },
+                  { phase: "Feedback", description: "Results inform adaptation", color: "ink" },
+                  { phase: "Recursion", description: "The cycle self-reinforces", color: "accent" },
+                ].map((step, index) => {
+                  const colorClasses = {
+                    accent: 'text-accent',
+                    signal: 'text-signal',
+                    danger: 'text-danger',
+                    ink: 'text-ink',
+                  };
+                  
+                  return (
+                    <div key={step.phase} className="text-center">
+                      <div className={`${colorClasses[step.color as keyof typeof colorClasses]} mb-4`}>
+                        <RecursionRing size={80} rings={2} speed={2 + index * 0.5} color={step.color as any} />
+                      </div>
+                      <h4 className={`text-lg font-display font-semibold ${colorClasses[step.color as keyof typeof colorClasses]} mb-2`}>
+                        {step.phase}
+                      </h4>
+                      <p className="text-sm text-gray">
+                        {step.description}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </GlassmorphicCard>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center">
+            <GlassmorphicCard blur="lg" className="p-12 max-w-3xl mx-auto">
+              <h3 className="text-3xl font-display font-semibold text-ink mb-4">
+                Ready to Enter the Loop?
+              </h3>
+              <p className="text-xl text-gray mb-8">
+                Join thousands of community builders creating sustainable futures through loop economics and decentralized governance.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button variant="primary" size="lg" glowEffect>
+                  Initialize Your Loop
+                </Button>
+                <Button variant="accent" size="lg">
+                  Learn More
+                </Button>
+              </div>
+            </GlassmorphicCard>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
     </div>
   );
 }
