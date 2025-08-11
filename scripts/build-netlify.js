@@ -24,9 +24,12 @@ if (!config.includes('ignoreDuringBuilds: true')) {
 fs.writeFileSync(configPath, config);
 
 try {
-  // Run the build
-  console.log('Running Next.js build...');
-  execSync('npm run build', { stdio: 'inherit' });
+  // Run the build with increased memory
+  console.log('Running Next.js build with increased memory...');
+  execSync('npm run build', { 
+    stdio: 'inherit',
+    env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=4096' }
+  });
   console.log('Build completed successfully!');
 } catch (error) {
   console.error('Build failed:', error.message);
