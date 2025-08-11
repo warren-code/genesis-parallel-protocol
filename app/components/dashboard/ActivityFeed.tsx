@@ -225,7 +225,7 @@ const ActivityFeed: React.FC<ActivityFeedProps> = ({
     warning: 'text-yellow-500'
   };
 
-  const roleColors = {
+  const roleColors: Record<string, string> = {
     admin: 'bg-danger/10 text-danger',
     ops_lead: 'bg-accent/10 text-accent',
     legal_lead: 'bg-signal/10 text-signal',

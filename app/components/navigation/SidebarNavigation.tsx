@@ -76,6 +76,7 @@ const SidebarNavigation: React.FC<SidebarNavigationProps> = ({ isOpen = true, on
   ];
 
   const isActiveLink = (href: string) => {
+    if (!pathname) return false;
     if (href === '/') return pathname === href;
     return pathname.startsWith(href);
   };

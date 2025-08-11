@@ -2,8 +2,16 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 
+interface ForumPost {
+  id: string;
+  title: string;
+  content?: string;
+  created_at?: string;
+  user_id?: string;
+}
+
 export default function Forum() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<ForumPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,7 +21,7 @@ export default function Forum() {
   const fetchPosts = async () => {
     const { data, error } = await supabase.from('forum_posts').select('*');
     if (error) console.error(error);
-    else setPosts(data);
+    else setPosts(data || []);
     setLoading(false);
   };
 

@@ -8,7 +8,7 @@ import { FOIATemplate } from '@/types/foia';
 function NewFOIARequestContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const templateId = searchParams.get('template');
+  const templateId = searchParams?.get('template') || null;
   const supabase = createClientComponentClient();
 
   const [formData, setFormData] = useState({

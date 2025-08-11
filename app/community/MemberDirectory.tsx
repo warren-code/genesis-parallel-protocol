@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 
+interface Member {
+  id: string;
+  full_name: string;
+  email: string;
+  role: string;
+}
+
 export default function MemberDirectory() {
-  const [members, setMembers] = useState([]);
+  const [members, setMembers] = useState<Member[]>([]);
 
   useEffect(() => {
     fetchMembers();
@@ -11,7 +18,7 @@ export default function MemberDirectory() {
   const fetchMembers = async () => {
     const { data, error } = await supabase.from('users').select('id, full_name, email, role');
     if (error) console.error(error);
-    else setMembers(data);
+    else setMembers(data || []);
   };
 
   return (

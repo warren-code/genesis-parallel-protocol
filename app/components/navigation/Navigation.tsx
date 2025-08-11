@@ -68,6 +68,7 @@ const Navigation: React.FC = () => {
   });
 
   const isActiveLink = (href: string) => {
+    if (!pathname) return false;
     if (href === '/') return pathname === href;
     return pathname.startsWith(href);
   };
