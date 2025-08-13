@@ -37,7 +37,7 @@ export default function MetadataEditor({ evidence, onClose, onSave }: MetadataEd
   const handleRemoveTag = (tagToRemove: string) => {
     setFormData(prev => ({
       ...prev,
-      tags: prev.tags.filter(tag => tag !== tagToRemove)
+      tags: prev.tags.filter((tag: string) => tag !== tagToRemove)
     }))
   }
 
@@ -187,7 +187,7 @@ export default function MetadataEditor({ evidence, onClose, onSave }: MetadataEd
                   </button>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {formData.tags.map(tag => (
+                  {formData.tags.map((tag: string) => (
                     <span
                       key={tag}
                       className="px-3 py-1 bg-white/10 rounded-full text-sm text-white

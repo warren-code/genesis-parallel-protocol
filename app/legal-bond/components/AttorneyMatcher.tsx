@@ -196,16 +196,19 @@ export default function AttorneyMatcher({ attorneys, legalCase, onMatchAttorney 
       {/* Attorney List */}
       <div className="space-y-4">
         {filteredAttorneys.map((attorney) => (
-          <GlassmorphicCard 
+          <div
             key={attorney.id}
-            blur="sm" 
-            opacity={0.05}
-            className={`hover:border-accent/50 transition-all cursor-pointer ${
-              selectedAttorney?.id === attorney.id ? 'border-accent/50' : ''
-            }`}
             onClick={() => setSelectedAttorney(attorney)}
+            className="cursor-pointer"
           >
-            <div className="p-4">
+            <GlassmorphicCard 
+              blur="sm" 
+              opacity={0.05}
+              className={`hover:border-accent/50 transition-all ${
+                selectedAttorney?.id === attorney.id ? 'border-accent/50' : ''
+              }`}
+            >
+              <div className="p-4">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-signal 
@@ -295,8 +298,9 @@ export default function AttorneyMatcher({ attorneys, legalCase, onMatchAttorney 
                   Request Match
                 </Button>
               </div>
-            </div>
-          </GlassmorphicCard>
+              </div>
+            </GlassmorphicCard>
+          </div>
         ))}
       </div>
 

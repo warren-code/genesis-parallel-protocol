@@ -243,7 +243,7 @@ export default function CollaborativeFactChecking({ entries, onUpdate }: Collabo
                   <p className="text-white font-medium">Contributor {rank}</p>
                   <p className="text-xs text-gray-400">{contributions} contributions</p>
                 </div>
-                <Award className={`w-5 h-5 ${badge.color}`} title={badge.label} />
+                <Award className={`w-5 h-5 ${badge.color}`} />
               </div>
             );
           })}

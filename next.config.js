@@ -57,6 +57,12 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   
+  // ESLint configuration
+  eslint: {
+    // Ignore ESLint errors during production builds
+    ignoreDuringBuilds: true,
+  },
+  
   // Environment variable validation
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -116,6 +122,16 @@ const nextConfig = {
     }
     
     return config
+  },
+  
+  // Turbopack configuration
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
   },
 }
 

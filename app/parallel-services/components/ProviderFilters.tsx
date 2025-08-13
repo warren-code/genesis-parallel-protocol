@@ -38,7 +38,7 @@ export const ProviderFilters: React.FC<ProviderFiltersProps> = ({
   const isFilterActive = (key: keyof ProviderFilter, value: any): boolean => {
     const filterValue = filters[key];
     if (Array.isArray(filterValue)) {
-      return filterValue.includes(value);
+      return (filterValue as any[]).includes(value);
     }
     return filterValue === value;
   };

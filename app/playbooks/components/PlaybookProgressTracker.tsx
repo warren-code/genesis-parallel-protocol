@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlaybookProgress } from '../../types';
+import { PlaybookProgress } from '../types';
 
 interface PlaybookProgressTrackerProps {
   progress: PlaybookProgress;

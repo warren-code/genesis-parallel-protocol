@@ -16,7 +16,7 @@ export default function AppLayout({ children, showSidebar = true }: AppLayoutPro
   
   // Don't show sidebar on certain pages
   const noSidebarPages = ['/auth/login', '/auth/signup', '/auth/forgot-password', '/'];
-  const shouldShowSidebar = showSidebar && !noSidebarPages.includes(pathname);
+  const shouldShowSidebar = showSidebar && pathname && !noSidebarPages.includes(pathname);
 
   return (
     <div className="relative">

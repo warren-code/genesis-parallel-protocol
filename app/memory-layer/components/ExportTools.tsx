@@ -25,11 +25,12 @@ export default function ExportTools() {
   const [statusMessage, setStatusMessage] = useState<string | null>(null)
   const [isExporting, setIsExporting] = useState(false)
 
-  const fileTypeIcons = {
+  const fileTypeIcons: Record<'document' | 'image' | 'video' | 'audio' | 'other', any> = {
     document: FileText,
     image: Image,
     video: Video,
-    audio: Music
+    audio: Music,
+    other: FileText
   }
 
   const formatFileSize = (bytes: number): string => {

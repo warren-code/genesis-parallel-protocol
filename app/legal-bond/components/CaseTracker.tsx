@@ -149,17 +149,20 @@ export default function CaseTracker({ cases, attorneys, onSelectCase, onUploadDo
         {/* Case List */}
         <div className="lg:col-span-2 space-y-4">
           {filteredCases.map((legalCase) => (
-            <GlassmorphicCard 
+            <div
               key={legalCase.id}
-              blur="sm" 
-              opacity={0.05}
-              className="hover:border-accent/50 transition-all cursor-pointer"
               onClick={() => {
                 setSelectedCase(legalCase)
                 onSelectCase?.(legalCase)
               }}
+              className="cursor-pointer"
             >
-              <div className="p-4">
+              <GlassmorphicCard 
+                blur="sm" 
+                opacity={0.05}
+                className="hover:border-accent/50 transition-all"
+              >
+                <div className="p-4">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-start gap-3">
                     <span className="text-2xl">{getTypeIcon(legalCase.type)}</span>
@@ -214,8 +217,9 @@ export default function CaseTracker({ cases, attorneys, onSelectCase, onUploadDo
                     )}
                   </div>
                 )}
-              </div>
-            </GlassmorphicCard>
+                </div>
+              </GlassmorphicCard>
+            </div>
           ))}
 
           {filteredCases.length === 0 && (

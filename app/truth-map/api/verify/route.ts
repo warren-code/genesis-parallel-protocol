@@ -4,7 +4,7 @@ import { getCurrentUser, hasRole } from '@/utils/supabase';
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { user } = await getCurrentUser();
 
     if (!user) {
@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user has permission to verify
-    const canVerify = await hasRole(user.id, ['admin', 'organizer']);
+    const canVerify = await hasRole(user.id, ['admin', 'ops_lead', 'legal_lead']);
     if (!canVerify) {
       return NextResponse.json({ error: 'Insufficient permissions' }, { status: 403 });
     }

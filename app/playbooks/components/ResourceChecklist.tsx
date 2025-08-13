@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlaybookPhase } from '../../types';
+import { PlaybookPhase } from '../types';
 
 interface ResourceChecklistProps {
   phase: PlaybookPhase;

@@ -37,6 +37,30 @@ const ConceptExplainer = () => {
     offset: ["start end", "end start"],
   });
 
+  // Create transforms outside of the map function
+  const transforms = concepts.map((_, index) => {
+    const start = index / concepts.length;
+    const end = (index + 1) / concepts.length;
+    
+    return {
+      opacity: useTransform(
+        scrollYProgress,
+        [start * 0.5, start * 0.7, end * 0.7, end * 0.9],
+        [0, 1, 1, 0]
+      ),
+      scale: useTransform(
+        scrollYProgress,
+        [start * 0.5, start * 0.7, end * 0.7, end * 0.9],
+        [0.8, 1, 1, 0.8]
+      ),
+      x: useTransform(
+        scrollYProgress,
+        [start * 0.5, start * 0.7],
+        index % 2 === 0 ? [-100, 0] : [100, 0]
+      )
+    };
+  });
+
   return (
     <section ref={containerRef} className="relative py-20">
       <div className="max-w-7xl mx-auto px-6">
@@ -56,26 +80,7 @@ const ConceptExplainer = () => {
 
         <div className="space-y-32">
           {concepts.map((concept, index) => {
-            const start = index / concepts.length;
-            const end = (index + 1) / concepts.length;
-            
-            const opacity = useTransform(
-              scrollYProgress,
-              [start * 0.5, start * 0.7, end * 0.7, end * 0.9],
-              [0, 1, 1, 0]
-            );
-
-            const scale = useTransform(
-              scrollYProgress,
-              [start * 0.5, start * 0.7, end * 0.7, end * 0.9],
-              [0.8, 1, 1, 0.8]
-            );
-
-            const x = useTransform(
-              scrollYProgress,
-              [start * 0.5, start * 0.7],
-              index % 2 === 0 ? [-100, 0] : [100, 0]
-            );
+            const { opacity, scale, x } = transforms[index];
 
             return (
               <motion.div

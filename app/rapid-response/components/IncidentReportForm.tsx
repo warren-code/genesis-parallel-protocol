@@ -22,7 +22,7 @@ export default function IncidentReportForm({ onClose }: { onClose?: () => void }
     title: '',
     description: '',
     type: incidentTypes[0],
-    severity: 'medium' as const,
+    severity: 'medium' as 'low' | 'medium' | 'high' | 'critical',
     respondersNeeded: 1,
     tags: [] as string[],
     location: {

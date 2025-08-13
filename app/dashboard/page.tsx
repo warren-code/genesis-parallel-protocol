@@ -4,6 +4,7 @@ import React from 'react';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import DashboardLayout from '@/app/components/dashboard/DashboardLayout';
 import RealTimeStats from '@/app/components/dashboard/RealTimeStats';
+import KPIBanner from '@/app/components/dashboard/KPIBanner';
 import ActivityFeed from '@/app/components/dashboard/ActivityFeed';
 import QuickActions from '@/app/components/dashboard/QuickActions';
 import GlassmorphicCard from '@/app/components/ui/GlassmorphicCard';
@@ -23,6 +24,9 @@ export default function DashboardPage() {
             </h1>
             <p className="text-gray">Your consciousness journey continues...</p>
           </div>
+
+          {/* KPI Banner with Chart.js visualizations */}
+          <KPIBanner />
 
           {/* Real-Time Statistics */}
           <RealTimeStats />

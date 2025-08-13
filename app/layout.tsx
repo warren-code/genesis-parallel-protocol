@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navigation from "./components/navigation/Navigation";
-import G3LoopMark from "./components/ui/G3LoopMark";
+import MainLayout from "@/components/layout/MainLayout";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 const geistSans = Geist({
@@ -29,11 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthProvider>
-          <Navigation />
-          <main className="pt-20">
+          <MainLayout>
             {children}
-          </main>
-          <G3LoopMark />
+          </MainLayout>
         </AuthProvider>
       </body>
     </html>

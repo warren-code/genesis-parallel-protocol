@@ -164,24 +164,30 @@ export async function canPerformAction(
   // Define permissions based on roles
   const permissions: Record<UserRole, string[]> = {
     admin: ['*'], // Admin can do everything
-    organizer: [
+    ops_lead: [
       'create_incident',
       'update_incident',
-      'create_foia',
-      'update_foia',
-      'upload_evidence',
-      'create_sop',
-      'update_sop',
-      'manage_network'
+      'delete_incident',
+      'manage_users',
+      'manage_network',
+      'view_all_data'
     ],
-    city_staff: [
-      'view_incident',
-      'update_incident_status',
-      'view_foia',
-      'respond_foia',
+    legal_lead: [
+      'create_case',
+      'update_case',
+      'manage_attorneys',
+      'manage_bond_fund',
+      'view_all_legal',
+      'approve_foia'
+    ],
+    attorney: [
+      'view_cases',
+      'update_own_cases',
+      'upload_documents',
+      'communicate_clients',
       'view_evidence'
     ],
-    advocate: [
+    member: [
       'create_incident',
       'view_incident',
       'create_foia',
@@ -190,6 +196,12 @@ export async function canPerformAction(
       'view_evidence',
       'view_rights',
       'connect_network'
+    ],
+    viewer: [
+      'view_incident',
+      'view_foia',
+      'view_evidence',
+      'view_rights'
     ]
   }
   

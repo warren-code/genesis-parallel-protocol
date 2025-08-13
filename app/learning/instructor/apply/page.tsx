@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '../../../../lib/supabase';
-import { getCurrentUser } from '../../../../lib/supabase';
 
 export default function InstructorApplyPage() {
   const router = useRouter();
@@ -22,7 +21,7 @@ export default function InstructorApplyPage() {
 
     try {
       // Get current user
-      const { user } = await getCurrentUser();
+      const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
         router.push('/auth/login');
         return;

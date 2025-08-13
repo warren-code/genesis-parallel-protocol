@@ -6,6 +6,7 @@ export type LegalCaseStatus = 'open' | 'in_progress' | 'closed' | 'appeal' | 'di
 export type CaseType = 'protest' | 'civil_rights' | 'wrongful_arrest' | 'police_brutality' | 'other'
 export type AttorneySpecialization = 'criminal' | 'civil_rights' | 'constitutional' | 'protest' | 'appeals' | 'general'
 export type DocumentType = 'complaint' | 'evidence' | 'motion' | 'brief' | 'court_order' | 'police_report' | 'witness_statement' | 'other'
+export type FOIARequestStatus = 'draft' | 'submitted' | 'acknowledged' | 'processing' | 'fulfilled' | 'denied' | 'appealed' | 'closed'
 
 export interface User {
   id: string
@@ -167,6 +168,77 @@ export interface LegalCase {
   updated_at: string
 }
 
+export interface RapidResponseIncident {
+  id: string
+  title: string
+  description: string
+  location: string
+  latitude?: number
+  longitude?: number
+  incident_date: string
+  status: IncidentStatus
+  priority: number
+  reported_by: string
+  assigned_to?: string
+  resolved_at?: string
+  resolution_notes?: string
+  created_at: string
+  updated_at: string
+}
+
+export interface FOIARequest {
+  id: string
+  request_number?: string
+  agency: string
+  subject: string
+  description: string
+  status: FOIARequestStatus
+  submitted_date?: string
+  response_date?: string
+  requested_by: string
+  documents?: string[]
+  created_at: string
+  updated_at: string
+}
+
+export interface EvidenceVault {
+  id: string
+  title: string
+  description?: string
+  file_url: string
+  file_type: string
+  file_size?: number
+  incident_id?: string
+  case_id?: string
+  uploaded_by: string
+  verified?: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface RightsInformation {
+  id: string
+  title: string
+  content: string
+  category: string
+  tags?: string[]
+  author_id: string
+  published?: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface Comment {
+  id: string
+  content: string
+  entity_type: string
+  entity_id: string
+  author_id: string
+  parent_id?: string
+  created_at: string
+  updated_at: string
+}
+
 export interface VolunteerAttorney {
   id: string
   user_id?: string
@@ -238,6 +310,31 @@ export interface Database {
         Row: VolunteerAttorney
         Insert: Omit<VolunteerAttorney, 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Omit<VolunteerAttorney, 'id' | 'created_at' | 'updated_at'>>
+      }
+      rapid_response_incidents: {
+        Row: RapidResponseIncident
+        Insert: Omit<RapidResponseIncident, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<RapidResponseIncident, 'id' | 'created_at' | 'updated_at'>>
+      }
+      foia_requests: {
+        Row: FOIARequest
+        Insert: Omit<FOIARequest, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<FOIARequest, 'id' | 'created_at' | 'updated_at'>>
+      }
+      evidence_vault: {
+        Row: EvidenceVault
+        Insert: Omit<EvidenceVault, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<EvidenceVault, 'id' | 'created_at' | 'updated_at'>>
+      }
+      rights_information: {
+        Row: RightsInformation
+        Insert: Omit<RightsInformation, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<RightsInformation, 'id' | 'created_at' | 'updated_at'>>
+      }
+      comments: {
+        Row: Comment
+        Insert: Omit<Comment, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<Comment, 'id' | 'created_at' | 'updated_at'>>
       }
     }
     Enums: {

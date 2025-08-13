@@ -1,37 +1,48 @@
-import React from 'react';
-import IncidentReportForm from './IncidentReportForm';
-import AlertSystem from './AlertSystem';
-import SecureMessaging from './SecureMessaging';
-import CoordinationDashboard from './CoordinationDashboard';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+'use client';
+
+import React, { useState } from 'react';
+import IncidentReportForm from './components/IncidentReportForm';
+import AlertSystem from './components/AlertSystem';
+import SecureMessaging from './components/SecureMessaging';
+import CoordinationDashboard from './components/CoordinationDashboard';
 
 export default function RapidResponseView() {
-  return (
-    <div className="max-w-xl mx-auto my-8 p-4 space-y-8">
-      <h1 className="text-2xl font-bold text-center">Rapid Response View</h1>
-      <Tabs variant="soft-rounded" colorScheme="teal">
-        <TabList>
-          <Tab>Incidents</Tab>
-          <Tab>Alerts</Tab>
-          <Tab>Messages</Tab>
-          <Tab>Coordination</Tab>
-        </TabList>
+  const [activeTab, setActiveTab] = useState('incidents');
 
-        <TabPanels>
-          <TabPanel>
-            <IncidentReportForm />
-          </TabPanel>
-          <TabPanel>
-            <AlertSystem />
-          </TabPanel>
-          <TabPanel>
-            <SecureMessaging />
-          </TabPanel>
-          <TabPanel>
-            <CoordinationDashboard />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+  const tabs = [
+    { id: 'incidents', label: 'Incidents', component: IncidentReportForm },
+    { id: 'alerts', label: 'Alerts', component: AlertSystem },
+    { id: 'messages', label: 'Messages', component: SecureMessaging },
+    { id: 'coordination', label: 'Coordination', component: CoordinationDashboard },
+  ];
+
+  const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || IncidentReportForm;
+
+  return (
+    <div className="max-w-6xl mx-auto my-8 p-4 space-y-8">
+      <h1 className="text-3xl font-bold text-center text-white mb-8">Rapid Response System</h1>
+      
+      {/* Tab Navigation */}
+      <div className="flex space-x-4 border-b border-gray/20">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-6 py-3 font-medium transition-all ${
+              activeTab === tab.id
+                ? 'text-accent border-b-2 border-accent'
+                : 'text-gray hover:text-white'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Tab Content */}
+      <div className="mt-8">
+        <ActiveComponent />
+      </div>
     </div>
   );
 }

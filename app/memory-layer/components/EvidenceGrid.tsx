@@ -12,11 +12,12 @@ interface EvidenceGridProps {
 export default function EvidenceGrid({ onSelectEvidence }: EvidenceGridProps) {
   const { evidence } = useMemory()
 
-  const fileTypeIcons = {
+  const fileTypeIcons: Record<string, any> = {
     document: FileText,
     image: Image,
     video: Video,
-    audio: Music
+    audio: Music,
+    other: FileText
   }
 
   const formatFileSize = (bytes: number): string => {

@@ -245,7 +245,7 @@ const RightsQuestionnaire = () => {
               <Button onClick={reset} variant="accent">
                 Take Again
               </Button>
-              <Button variant="outline">
+              <Button variant="secondary">
                 Save Results
               </Button>
             </div>

@@ -15,7 +15,7 @@ export default function MemberDirectory({ members, onSelectMember }: MemberDirec
   const [sortBy, setSortBy] = useState<'name' | 'date' | 'contribution'>('name')
 
   const filteredAndSortedMembers = useMemo(() => {
-    let filtered = members.filter(member => {
+    const filtered = members.filter(member => {
       const matchesSearch = 
         member.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         member.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -124,14 +124,17 @@ export default function MemberDirectory({ members, onSelectMember }: MemberDirec
       {/* Member List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredAndSortedMembers.map((member) => (
-          <GlassmorphicCard 
-            key={member.id} 
-            blur="sm" 
-            opacity={0.05}
-            className="hover:border-accent/50 transition-all cursor-pointer"
+          <div
+            key={member.id}
             onClick={() => onSelectMember?.(member)}
+            className="cursor-pointer"
           >
-            <div className="p-4 space-y-3">
+            <GlassmorphicCard 
+              blur="sm" 
+              opacity={0.05}
+              className="hover:border-accent/50 transition-all"
+            >
+              <div className="p-4 space-y-3">
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="font-semibold text-ink">{member.full_name}</h3>
@@ -182,8 +185,9 @@ export default function MemberDirectory({ members, onSelectMember }: MemberDirec
                   </div>
                 </div>
               </div>
-            </div>
-          </GlassmorphicCard>
+              </div>
+            </GlassmorphicCard>
+          </div>
         ))}
       </div>
 

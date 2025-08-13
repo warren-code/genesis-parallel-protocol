@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Playbook, PlaybookProgress } from '../types';
+import { Playbook, PlaybookProgress } from './types';
 import PlaybookViewer from './components/PlaybookViewer';
 import PlaybookProgressTracker from './components/PlaybookProgressTracker';
 import ResourceChecklist from './components/ResourceChecklist';

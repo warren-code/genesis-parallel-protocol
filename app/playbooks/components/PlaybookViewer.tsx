@@ -1,5 +1,5 @@
 import React from 'react';
-import { Playbook } from '../../types';
+import { Playbook } from '../types';
 
 interface PlaybookViewerProps {
   playbook: Playbook;

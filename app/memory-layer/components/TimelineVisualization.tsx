@@ -16,11 +16,12 @@ export default function TimelineVisualization({ onSelectEvidence }: TimelineVisu
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [filteredEvidence, setFilteredEvidence] = useState(evidence)
 
-  const fileTypeIcons = {
+  const fileTypeIcons: Record<'document' | 'image' | 'video' | 'audio' | 'other', any> = {
     document: FileText,
     image: Image,
     video: Video,
-    audio: Music
+    audio: Music,
+    other: FileText
   }
 
   useEffect(() => {

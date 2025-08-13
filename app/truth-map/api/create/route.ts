@@ -4,7 +4,7 @@ import { getCurrentUser } from '@/utils/supabase';
 
 export async function POST(request: NextRequest) {
   try {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { user } = await getCurrentUser();
 
     if (!user) {

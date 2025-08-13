@@ -28,7 +28,7 @@ function Quiz({ courseId, userId }: QuizProps) {
 
     const handleSubmit = async () => {
         // Evaluate answers here
-        const score = quiz.quiz_questions.reduce((acc, question) => {
+        const score = quiz.quiz_questions.reduce((acc: number, question: any) => {
             const isCorrect = selectedAnswers[question.id] === question.correct_answer;
             return acc + (isCorrect ? question.marks : 0);
         }, 0);
@@ -52,10 +52,10 @@ function Quiz({ courseId, userId }: QuizProps) {
     return (
         <div>
             <h3>Quiz</h3>
-            {quiz?.quiz_questions.map((question, index) => (
+            {quiz?.quiz_questions.map((question: any, index: number) => (
                 <div key={question.id}>
                     <p>{index + 1}. {question.question}</p>
-                    {Object.keys(question.options).map((option, idx) => (
+                    {Object.keys(question.options).map((option: string, idx: number) => (
                         <label key={idx}>
                             <input
                                 type="radio"

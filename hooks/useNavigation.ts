@@ -26,9 +26,11 @@ export function useNavigation() {
 
   // Update loop progress based on navigation
   useEffect(() => {
-    const pathSegments = pathname.split('/').filter(Boolean);
-    const progress = Math.min((pathSegments.length / 5) * 100, 100);
-    setState(prev => ({ ...prev, loopProgress: progress }));
+    if (pathname) {
+      const pathSegments = pathname.split('/').filter(Boolean);
+      const progress = Math.min((pathSegments.length / 5) * 100, 100);
+      setState(prev => ({ ...prev, loopProgress: progress }));
+    }
   }, [pathname]);
 
   // Toggle functions

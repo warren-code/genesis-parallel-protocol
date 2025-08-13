@@ -129,40 +129,45 @@ const ResourcesSection = () => {
               {/* Resource Cards */}
               <div className="space-y-4">
                 {category.items.map((item, itemIndex) => {
-                  const ItemWrapper = item.downloadUrl ? Link : 'div';
-                  const wrapperProps = item.downloadUrl ? { href: item.downloadUrl, download: true } : {};
-                  
-                  return (
-                    <ItemWrapper key={itemIndex} {...wrapperProps}>
-                      <motion.div
-                        whileHover={{ scale: 1.02, x: 5 }}
-                        className="bg-[#1a1a1a] border border-[#00ff00]/30 rounded-lg p-5 hover:border-[#00ff00] transition-all cursor-pointer group"
-                      >
-                    <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-[#00ff00] transition-colors">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-gray-400 mb-3">
-                      {item.description}
-                    </p>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-3 text-xs text-gray-500">
-                        <span>{item.format}</span>
-                        <span>•</span>
-                        <span>{item.fileSize}</span>
-                        <span>•</span>
-                        <span>{item.downloads} downloads</span>
-                      </div>
+                  const content = (
+                    <motion.div
+                      whileHover={{ scale: 1.02, x: 5 }}
+                      className="bg-[#1a1a1a] border border-[#00ff00]/30 rounded-lg p-5 hover:border-[#00ff00] transition-all cursor-pointer group"
+                    >
+                      <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-[#00ff00] transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-gray-400 mb-3">
+                        {item.description}
+                      </p>
                       
-                      <motion.div
-                        whileHover={{ scale: 1.2 }}
-                        className="text-[#00ff00] group-hover:animate-bounce"
-                      >
-                        ↓
-                      </motion.div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex gap-3 text-xs text-gray-500">
+                          <span>{item.format}</span>
+                          <span>•</span>
+                          <span>{item.fileSize}</span>
+                          <span>•</span>
+                          <span>{item.downloads} downloads</span>
+                        </div>
+                        
+                        <motion.div
+                          whileHover={{ scale: 1.2 }}
+                          className="text-[#00ff00] group-hover:animate-bounce"
+                        >
+                          ↓
+                        </motion.div>
+                      </div>
+                    </motion.div>
+                  );
+                  
+                  return item.downloadUrl ? (
+                    <Link key={itemIndex} href={item.downloadUrl} download>
+                      {content}
+                    </Link>
+                  ) : (
+                    <div key={itemIndex}>
+                      {content}
                     </div>
-                  </motion.div>
-                    </ItemWrapper>
                   );
                 })}
               </div>

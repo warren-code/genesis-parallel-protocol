@@ -3,17 +3,16 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { supabase } from '../../../../lib/supabase';
-import { getCurrentUser } from '../../../../lib/supabase';
 
 export default function CourseDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const courseId = params.courseId as string;
+  const courseId = params?.courseId as string;
   
-  const [course, setCourse] = useState(null);
-  const [materials, setMaterials] = useState([]);
-  const [progress, setProgress] = useState(null);
-  const [user, setUser] = useState(null);
+  const [course, setCourse] = useState<any>(null);
+  const [materials, setMaterials] = useState<any[]>([]);
+  const [progress, setProgress] = useState<any>(null);
+  const [user, setUser] = useState<any>(null);
   const [enrolled, setEnrolled] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
   const [loading, setLoading] = useState(true);
@@ -23,7 +22,7 @@ export default function CourseDetailPage() {
       setLoading(true);
       
       // Get current user
-      const { user: currentUser } = await getCurrentUser();
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
       if (currentUser) {
         setUser(currentUser);
       }
@@ -157,7 +156,7 @@ export default function CourseDetailPage() {
             <span className="px-3 py-1 bg-gray-700 rounded-full text-sm">
               {course.duration} minutes
             </span>
-            {course.tags?.map((tag, index) => (
+            {course.tags?.map((tag: any, index: number) => (
               <span key={index} className="px-3 py-1 bg-gray-700 rounded-full text-sm">
                 {tag}
               </span>
@@ -246,7 +245,7 @@ export default function CourseDetailPage() {
               </ul>
 
               <h3>Instructors</h3>
-              {course.course_instructors?.map((ci, index) => (
+              {course.course_instructors?.map((ci: any, index: number) => (
                 <div key={index} className="mb-4">
                   <h4>{ci.instructors.users?.full_name || 'Instructor'}</h4>
                   <p>{ci.instructors.bio}</p>

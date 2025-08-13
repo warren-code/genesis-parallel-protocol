@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { 
   Incident, 
+  IncidentUpdate,
   Alert, 
   Responder, 
   SecureMessage,
@@ -364,7 +365,7 @@ export function RapidResponseProvider({ children }: { children: React.ReactNode 
         },
         (payload) => {
           // Handle new updates
-          const update = payload.new;
+          const update = payload.new as IncidentUpdate;
           setIncidents(prev => prev.map(inc => {
             if (inc.id === incidentId) {
               return {

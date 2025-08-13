@@ -8,6 +8,7 @@ interface GlassmorphicCardProps {
   blur?: 'sm' | 'md' | 'lg' | 'xl';
   opacity?: number;
   borderGlow?: boolean;
+  onClick?: () => void;
 }
 
 const GlassmorphicCard: React.FC<GlassmorphicCardProps> = ({
@@ -16,6 +17,7 @@ const GlassmorphicCard: React.FC<GlassmorphicCardProps> = ({
   blur = 'md',
   opacity = 0.1,
   borderGlow = false,
+  onClick,
 }) => {
   const blurClasses = {
     sm: 'backdrop-blur-sm',
@@ -26,6 +28,7 @@ const GlassmorphicCard: React.FC<GlassmorphicCardProps> = ({
 
   return (
     <div
+      onClick={onClick}
       className={`
         relative overflow-hidden rounded-2xl
         ${blurClasses[blur]}
