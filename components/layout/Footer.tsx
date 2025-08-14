@@ -147,13 +147,16 @@ const Footer: React.FC = () => {
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                 <div className="flex items-center gap-3">
                   {/* Genesis Logo Mark */}
-                  <div className="w-8 h-8 rounded-lg overflow-hidden">
+                  <div className="relative w-8 h-8 rounded-lg overflow-hidden">
+                    {/* Glow effect layer */}
+                    <div className="absolute inset-0 bg-accent/20 blur-sm" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/30 via-signal/20 to-quantum/10 blur-md" />
                     <Image 
                       src="/images/golden-rings-logo.svg" 
                       alt="Genesis Protocol Logo"
                       width={32}
                       height={32}
-                      className="object-contain p-0.5 rotate-180"
+                      className="relative object-contain p-0.5 rotate-180 drop-shadow-[0_0_8px_rgba(228,197,103,0.4)] filter brightness-105"
                     />
                   </div>
                   <p className="text-gray text-sm">

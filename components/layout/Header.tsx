@@ -58,12 +58,15 @@ const Header: React.FC = () => {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-accent via-signal to-quantum opacity-75 blur-xl group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden transform group-hover:scale-110 transition-transform duration-300">
+                    {/* Glow effect layer */}
+                    <div className="absolute inset-0 bg-accent/30 blur-md" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-signal/30 to-quantum/20 blur-lg animate-pulse" />
                     <Image 
                       src="/images/golden-rings-logo.svg" 
                       alt="Genesis Protocol Logo"
                       width={48}
                       height={48}
-                      className="object-contain p-1 rotate-180"
+                      className="relative object-contain p-1 rotate-180 drop-shadow-[0_0_10px_rgba(228,197,103,0.5)] filter brightness-110"
                     />
                   </div>
                 </div>
