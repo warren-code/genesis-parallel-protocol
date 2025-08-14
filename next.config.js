@@ -106,7 +106,14 @@ const nextConfig = {
     domains: [
       'localhost',
       // Add your Supabase Storage domain
-      process.env.NEXT_PUBLIC_SUPABASE_URL ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname : '',
+      ...(process.env.NEXT_PUBLIC_SUPABASE_URL ? (() => {
+        try {
+          return [new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname];
+        } catch (e) {
+          console.warn('Invalid NEXT_PUBLIC_SUPABASE_URL:', e.message);
+          return [];
+        }
+      })() : []),
     ].filter(Boolean),
   },
   
