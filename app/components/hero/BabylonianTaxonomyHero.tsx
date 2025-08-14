@@ -72,7 +72,7 @@ const BabylonianTaxonomyHero: React.FC = () => {
         transition={{
           duration: 8,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
         }}
       >
         <RecursionRing size={200} rings={4} speed={2} color="gold" />
@@ -87,7 +87,7 @@ const BabylonianTaxonomyHero: React.FC = () => {
         transition={{
           duration: 10,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "easeInOut" as const,
         }}
       >
         <RecursionRing size={250} rings={5} speed={3} color="gold" />
@@ -179,7 +179,7 @@ const BabylonianTaxonomyHero: React.FC = () => {
         transition={{ 
           duration: 2, 
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }}
       >
         <svg 
