@@ -39,6 +39,7 @@ const RecursionRing: React.FC<RecursionRingProps> = ({
     signal: 'stroke-signal',
     danger: 'stroke-danger',
     ink: 'stroke-ink',
+    gold: 'stroke-gold-500',
   };
 
   return (
@@ -101,7 +102,7 @@ const RecursionRing: React.FC<RecursionRingProps> = ({
         return (
           <circle
             key={index}
-            className={`recursion-ring ${colorClasses[color]}`}
+            className={`recursion-ring ${colorClasses[color] || 'stroke-accent'}`}
             cx={size / 2}
             cy={size / 2}
             r={radius}
@@ -119,7 +120,7 @@ const RecursionRing: React.FC<RecursionRingProps> = ({
         cx={size / 2}
         cy={size / 2}
         r="4"
-        className={`fill-current ${colorClasses[color].replace('stroke-', 'text-')}`}
+        className={`fill-current ${(colorClasses[color] || 'stroke-accent').replace('stroke-', 'text-')}`}
         filter="url(#glow)"
       />
     </svg>
