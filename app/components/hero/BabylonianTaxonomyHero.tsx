@@ -39,7 +39,7 @@ const BabylonianTaxonomyHero: React.FC = () => {
       scale: 1,
       transition: {
         duration: 1.2,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     },
   };
