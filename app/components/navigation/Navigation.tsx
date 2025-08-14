@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import GlassmorphicCard from '../ui/GlassmorphicCard';
 import { useAuth } from '@/contexts/AuthContext';
 import SearchBar from '../search/SearchBar';
@@ -19,8 +20,22 @@ interface MenuItem {
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const moreDropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const { user, profile, signOut } = useAuth();
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (moreDropdownRef.current && !moreDropdownRef.current.contains(event.target as Node)) {
+        setIsMoreOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const publicMenuItems: MenuItem[] = [
     { label: 'Gateway', href: '/', icon: '◈', realm: 'foundation' },
@@ -85,14 +100,20 @@ const Navigation: React.FC = () => {
           <div className="px-6 py-4">
             <div className="flex items-center justify-between">
               {/* Logo */}
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-signal flex items-center justify-center">
-                  <span className="text-primary font-display font-bold text-xl">G3</span>
+              <Link href="/" className="flex items-center space-x-3 group">
+                <div className="w-10 h-10 rounded-lg bg-black/50 flex items-center justify-center p-1 group-hover:bg-black/70 transition-colors">
+                  <Image 
+                    src="/golden-rings-logo.svg" 
+                    alt="Genesis Protocol" 
+                    width={32} 
+                    height={32}
+                    className="w-full h-full"
+                  />
                 </div>
-                <span className="text-ink font-display text-xl font-semibold hidden sm:block">
+                <span className="text-ink font-display text-xl font-semibold hidden sm:block group-hover:text-accent transition-colors">
                   Genesis Protocol
                 </span>
-              </div>
+              </Link>
 
               {/* Search Bar */}
               <div className="hidden lg:block flex-1 max-w-md mx-4">
@@ -101,7 +122,7 @@ const Navigation: React.FC = () => {
 
               {/* Desktop Menu */}
               <div className="hidden lg:flex items-center space-x-1">
-                {filteredMenuItems.slice(0, 6).map((item) => (
+                {filteredMenuItems.slice(0, 5).map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
@@ -115,6 +136,46 @@ const Navigation: React.FC = () => {
                     {item.label}
                   </Link>
                 ))}
+
+                {/* More Dropdown */}
+                {filteredMenuItems.length > 5 && (
+                  <div className="relative" ref={moreDropdownRef}>
+                    <button
+                      onClick={() => setIsMoreOpen(!isMoreOpen)}
+                      className={`px-3 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 font-body text-sm ${
+                        isMoreOpen
+                          ? 'text-ink bg-accent/10 border border-accent/20'
+                          : 'text-gray hover:text-ink hover:bg-ink/10 border border-transparent'
+                      }`}
+                    >
+                      <span className="text-accent">⋯</span>
+                      More
+                      <svg className={`w-3 h-3 transition-transform ${isMoreOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {isMoreOpen && (
+                      <div className="absolute right-0 mt-2 py-2 w-56 bg-primary/95 backdrop-blur-xl rounded-lg shadow-xl border border-accent/20 z-50">
+                        {filteredMenuItems.slice(5).map((item) => (
+                          <Link
+                            key={item.label}
+                            href={item.href}
+                            onClick={() => setIsMoreOpen(false)}
+                            className={`px-4 py-2 flex items-center gap-3 font-body text-sm transition-colors ${
+                              isActiveLink(item.href)
+                                ? 'text-ink bg-accent/10'
+                                : 'text-gray hover:text-ink hover:bg-ink/10'
+                            }`}
+                          >
+                            <span className="text-accent">{item.icon}</span>
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Notification System */}
                 {user && (

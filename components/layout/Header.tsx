@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import GlassmorphicCard from '@/app/components/ui/GlassmorphicCard';
+import { GlossarySearch } from '@/components/GlossarySearch';
 
 interface NavItem {
   label: string;
@@ -20,10 +21,10 @@ const Header: React.FC = () => {
   const navItems: NavItem[] = [
     { label: 'Home', href: '/', description: 'Gateway to Genesis Protocol' },
     { label: 'Mission', href: '/mission', description: 'Our purpose and vision' },
-    { label: 'DAO Laws', href: '/dao-laws', description: 'Decentralized governance framework' },
-    { label: 'Energy', href: '/energy', description: 'Sustainable energy solutions' },
-    { label: 'Food', href: '/food', description: 'Food security and sovereignty' },
-    { label: 'Water', href: '/water', description: 'Water management systems' },
+    { label: 'Parallel Protocol', href: '/parallel-protocol', description: 'Complete operational framework' },
+    { label: 'DAO Governance', href: '/dao-governance', description: 'Decentralized governance framework' },
+    { label: 'Loop Economics', href: '/loop-economics', description: 'Regenerative economic systems' },
+    { label: 'SCEP', href: '/scep', description: 'Shared Cognitive Emotional Plane' },
     { label: 'Housing', href: '/housing', description: 'Affordable housing solutions' },
     { label: 'Health', href: '/health', description: 'Community health infrastructure' },
     { label: 'Education', href: '/education', description: 'Learning and knowledge systems' },
@@ -138,6 +139,11 @@ const Header: React.FC = () => {
                       </GlassmorphicCard>
                     </div>
                   )}
+                </div>
+                
+                {/* Glossary Search */}
+                <div className="ml-4">
+                  <GlossarySearch />
                 </div>
               </nav>
 
