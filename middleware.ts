@@ -1,22 +1,17 @@
-import { type NextRequest, NextResponse } from 'next/server'
-// import { updateSession } from '@/utils/supabase/middleware'
+// Simplified middleware for Netlify deployment
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
 
-export async function middleware(request: NextRequest) {
-  // Temporarily bypass authentication for development
-  // return await updateSession(request)
+export function middleware(request: NextRequest) {
+  // Simple pass-through middleware
   return NextResponse.next()
 }
 
+// Only match specific paths that need middleware
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - images - .svg, .png, .jpg, .jpeg, .gif, .webp
-     * Feel free to modify this pattern to include more paths.
-     */
-    '/((?!_next/static|_next/image|favicon.ico|.*\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/dashboard/:path*',
+    '/settings/:path*',
+    '/api/protected/:path*'
   ],
 }
