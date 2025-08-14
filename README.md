@@ -104,3 +104,6 @@ This app is configured for deployment on Netlify. The build settings are:
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+---
+Last deployment: August 14, 2025
