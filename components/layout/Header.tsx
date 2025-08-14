@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import GlassmorphicCard from '@/app/components/ui/GlassmorphicCard';
 import { GlossarySearch } from '@/components/GlossarySearch';
@@ -56,8 +57,14 @@ const Header: React.FC = () => {
               <Link href="/" className="flex items-center space-x-3 group">
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-accent via-signal to-quantum opacity-75 blur-xl group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-accent via-signal to-quantum flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-primary font-display font-bold text-2xl">G</span>
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden transform group-hover:scale-110 transition-transform duration-300">
+                    <Image 
+                      src="/images/golden-rings-logo.svg" 
+                      alt="Genesis Protocol Logo"
+                      width={48}
+                      height={48}
+                      className="object-contain p-1 rotate-180"
+                    />
                   </div>
                 </div>
                 <div className="flex flex-col">

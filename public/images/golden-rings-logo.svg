@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Three interlocking rings -->
+  <g transform="translate(50,50)" filter="url(#glow)">
+    <!-- Ring 1 - Top -->
+    <circle cx="-15" cy="-10" r="20" fill="none" stroke="url(#goldGradient)" stroke-width="3" opacity="0.9"/>
+    <!-- Ring 2 - Bottom Left -->
+    <circle cx="15" cy="-10" r="20" fill="none" stroke="url(#goldGradient)" stroke-width="3" opacity="0.9"/>
+    <!-- Ring 3 - Bottom -->
+    <circle cx="0" cy="15" r="20" fill="none" stroke="url(#goldGradient)" stroke-width="3" opacity="0.9"/>
+  </g>
+</svg>

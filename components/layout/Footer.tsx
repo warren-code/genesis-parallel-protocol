@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import GlassmorphicCard from '@/app/components/ui/GlassmorphicCard';
 
 interface FooterLink {
@@ -146,8 +147,14 @@ const Footer: React.FC = () => {
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                 <div className="flex items-center gap-3">
                   {/* Genesis Logo Mark */}
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent via-signal to-quantum opacity-80 flex items-center justify-center">
-                    <span className="text-primary font-display font-bold text-sm">G</span>
+                  <div className="w-8 h-8 rounded-lg overflow-hidden">
+                    <Image 
+                      src="/images/golden-rings-logo.svg" 
+                      alt="Genesis Protocol Logo"
+                      width={32}
+                      height={32}
+                      className="object-contain p-0.5 rotate-180"
+                    />
                   </div>
                   <p className="text-gray text-sm">
                     © {currentYear} Genesis Protocol. Building the future, together.
