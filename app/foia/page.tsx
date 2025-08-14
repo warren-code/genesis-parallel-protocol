@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createBrowserClient } from '@supabase/ssr';
 import { FOIARequest, FOIAStatus } from '@/types/foia';
 import { 
   DocumentTextIcon, 
@@ -36,7 +36,10 @@ export default function FOIADashboard() {
     fulfilled: 0,
     denied: 0
   });
-  const supabase = createClientComponentClient();
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
   useEffect(() => {
     fetchRequests();

@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createBrowserClient } from '@supabase/ssr';
 import type { 
   Incident, 
   IncidentUpdate,
@@ -52,7 +52,10 @@ const RapidResponseContext = createContext<RapidResponseContextType | undefined>
 
 export function RapidResponseProvider({ children }: { children: React.ReactNode }) {
   const { user, profile } = useAuth();
-  const supabase = createClientComponentClient();
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
   
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [activeIncident, setActiveIncident] = useState<Incident | null>(null);

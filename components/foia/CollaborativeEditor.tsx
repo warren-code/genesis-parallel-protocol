@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createBrowserClient } from '@supabase/ssr';
 import { FOIADocument, FOIADocumentVersion } from '@/types/foia';
 import { 
   DocumentTextIcon, 
@@ -32,7 +32,10 @@ export default function CollaborativeEditor({
   const [saving, setSaving] = useState(false);
   const [versions, setVersions] = useState<FOIADocumentVersion[]>([]);
   const [showVersionHistory, setShowVersionHistory] = useState(false);
-  const supabase = createClientComponentClient();
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
   useEffect(() => {
     if (documentId) {

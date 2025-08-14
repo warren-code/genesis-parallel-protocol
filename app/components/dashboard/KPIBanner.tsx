@@ -15,7 +15,7 @@ import {
   Filler
 } from 'chart.js';
 import GlassmorphicCard from '../ui/GlassmorphicCard';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createBrowserClient } from '@supabase/ssr';
 
 // Register ChartJS components
 ChartJS.register(
@@ -61,7 +61,10 @@ export default function KPIBanner() {
   });
   const [loading, setLoading] = useState(true);
   const [lastUpdate, setLastUpdate] = useState(new Date());
-  const supabase = createClientComponentClient();
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
   // Fetch metrics from Supabase
   const fetchMetrics = async () => {
