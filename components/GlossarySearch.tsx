@@ -129,7 +129,7 @@ export const GlossarySearch: React.FC = () => {
                             <span className="text-xs text-gray-500">Related:</span>
                             {term.relatedTerms.map((related, idx) => (
                               <span key={idx} className="text-xs text-primary">
-                                {related}{idx < term.relatedTerms.length - 1 ? ',' : ''}
+                                {related}{idx < (term.relatedTerms?.length ?? 0) - 1 ? ',' : ''}
                               </span>
                             ))}
                           </div>
