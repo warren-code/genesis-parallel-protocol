@@ -43,9 +43,6 @@
 # Plugins
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    # Disable Edge Functions for middleware
-    disableEdgeFunctions = true
 
 # Post-processing
 [build.processing]
