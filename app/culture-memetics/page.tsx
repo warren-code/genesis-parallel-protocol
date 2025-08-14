@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import GlassmorphicCard from '@/app/components/ui/GlassmorphicCard';
 import { GlossaryTooltip } from '@/components/GlossaryTooltip';
 import { 
-  FaMusic, FaChain, FaExclamationTriangle, FaCheckCircle,
+  FaMusic, FaLink, FaExclamationTriangle, FaCheckCircle,
   FaPlay, FaPause, FaExternalLinkAlt, FaDownload,
   FaBroadcastTower, FaCode, FaUsers, FaCopy,
   FaChartLine, FaTools, FaRocket, FaQrcode
@@ -131,7 +131,7 @@ const CultureMemeticsPage = () => {
       >
         <GlassmorphicCard className="p-8">
           <div className="flex items-center gap-3 mb-6">
-            <FaChain className="text-2xl text-red-400" />
+            <FaLink className="text-2xl text-red-400" />
             <h2 className="text-2xl font-bold text-white">How Artists Get Co-opted</h2>
           </div>
           
