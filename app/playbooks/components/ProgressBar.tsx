@@ -37,7 +37,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
           className={`h-full ${getProgressColor()} rounded-full`}
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 0.5, ease: 'easeOut' as const }}
         >
           <div className="h-full flex items-center justify-end pr-2">
             {progress > 10 && showPercentage && (

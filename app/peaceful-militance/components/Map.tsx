@@ -86,7 +86,7 @@ const Map: React.FC<MapProps> = ({ incidents, onIncidentClick }) => {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeOut",
+      ease: "easeOut" as const
               }}
               className={`absolute inset-0 rounded-full ${getIncidentColor(incident.type)}`}
               style={{

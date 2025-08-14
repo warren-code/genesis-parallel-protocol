@@ -36,10 +36,10 @@ export default function BabylonianTaxonomyPage() {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
-    }
-  };
-
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const
+      }
   const staggerContainer = {
     hidden: { opacity: 0 },
     visible: {
@@ -67,7 +67,7 @@ export default function BabylonianTaxonomyPage() {
       transition: {
         duration: 6,
         repeat: Infinity,
-        ease: "easeInOut"
+          ease: "easeInOut" as const
       }
     }
   };
@@ -79,7 +79,7 @@ export default function BabylonianTaxonomyPage() {
       transition: {
         duration: 2,
         repeat: Infinity,
-        ease: "easeInOut"
+            ease: "easeInOut" as const
       }
     }
   };
@@ -468,7 +468,7 @@ export default function BabylonianTaxonomyPage() {
                     rotateX: 0,
                     transition: {
                       duration: 0.8,
-                      ease: "easeOut"
+        ease: "easeOut" as const,
                     }
                   }
                 }}
@@ -539,7 +539,7 @@ export default function BabylonianTaxonomyPage() {
                     transition={{
                       duration: 3,
                       repeat: Infinity,
-                      ease: "easeInOut"
+          ease: "easeInOut" as const
                     }}
                   />
                 </GlassmorphicCard>

@@ -201,7 +201,7 @@ const LoopCardVisualization: React.FC<LoopCardVisualizationProps> = ({
             transition={{
               duration: 3,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             }}
           />
           <text
