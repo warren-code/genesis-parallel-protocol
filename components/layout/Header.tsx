@@ -16,30 +16,40 @@ interface NavItem {
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isModulesOpen, setIsModulesOpen] = useState(false);
   const pathname = usePathname();
 
-  // Enhanced navigation with protocol suite
+  // Top-level navigation items
   const navItems: NavItem[] = [
     { label: 'Home', href: '/', description: 'Gateway to Genesis Protocol' },
-    { label: 'Protocols', href: '/protocols', description: 'Six foundational protocol suite' },
-    { label: 'Parallel Protocol', href: '/parallel-protocol', description: 'Complete operational framework' },
-    { label: 'DAO Governance', href: '/dao-governance', description: 'Decentralized governance framework' },
-    { label: 'Loop Economics', href: '/loop-economics', description: 'Regenerative economic systems' },
-    { label: 'SCEP', href: '/scep', description: 'Shared Cognitive Emotional Plane' },
-    { label: 'Transport Protocol', href: '/protocols/transport', description: 'Decentralized movement systems' },
-    { label: 'Housing Protocol', href: '/protocols/housing', description: 'DAO-managed housing infrastructure' },
-    { label: 'Finance Protocol', href: '/protocols/finance', description: 'Non-debt tokenized economies' },
-    { label: 'Technology Protocol', href: '/protocols/technology', description: 'SCEP-integrated tech stack' },
-    { label: 'Trade Protocol', href: '/protocols/trade', description: 'Transparent supply chains' },
-    { label: 'FOIA Protocol', href: '/protocols/foia', description: 'Radical transparency system' },
-    { label: 'Culture', href: '/culture-memetics', description: 'Arts and cultural preservation' },
-    { label: 'Education', href: '/learning', description: 'Learning and knowledge systems' },
-    { label: 'Health', href: '/parallel-protocol#health', description: 'Community health infrastructure' },
-    { label: 'Security', href: '/parallel-protocol#security', description: 'Community safety protocols' },
-    { label: 'Waste', href: '/loop-economics#waste', description: 'Waste management and recycling' },
-    { label: 'Why Genesis', href: '/why-genesis', description: 'The need for new civilization' },
-    { label: 'Compare', href: '/compare', description: 'Genesis vs traditional systems' },
-    { label: 'Download', href: '/download', description: 'Resources and documentation' },
+    { label: 'Genesis Parallel Protocol', href: '/parallel-protocol', description: 'Complete operational framework' },
+  ];
+
+  // Modules dropdown items
+  const moduleItems: NavItem[] = [
+    { label: 'Loop Economics', href: '/modules/loop-economics', description: 'Regenerative economic systems' },
+    { label: 'Energy', href: '/modules/energy', description: 'Sustainable energy systems' },
+    { label: 'Food', href: '/modules/food', description: 'Food production and distribution' },
+    { label: 'Water', href: '/modules/water', description: 'Water management systems' },
+    { label: 'Robotics', href: '/modules/robotics', description: 'Automation and robotics' },
+    { label: 'Biotech', href: '/modules/biotech', description: 'Biotechnology applications' },
+    { label: 'AI', href: '/modules/ai', description: 'Artificial intelligence integration' },
+    { label: 'Education', href: '/modules/education', description: 'Learning and knowledge systems' },
+    { label: 'Housing', href: '/modules/housing', description: 'DAO-managed housing infrastructure' },
+    { label: 'Health', href: '/modules/health', description: 'Community health infrastructure' },
+    { label: 'SCEP', href: '/modules/scep', description: 'Shared Cognitive Emotional Plane' },
+    { label: 'SCEP Death Realms', href: '/modules/scep-death-realms', description: 'Controlled collapse and reconstitution' },
+    { label: 'Babylon\'s Loops & Playbook', href: '/modules/babylon-loops', description: 'Understanding and breaking extraction loops' },
+    { label: 'Culture & Memetics', href: '/modules/culture-memetics', description: 'Operational music and cultural infrastructure' },
+  ];
+
+  // Protocol items
+  const protocolItems: NavItem[] = [
+    { label: 'FOIA Protocol', href: '/modules/foia', description: 'Radical transparency system' },
+    { label: 'Trade Protocol', href: '/modules/trade', description: 'Transparent supply chains' },
+    { label: 'Finance Protocol', href: '/modules/finance', description: 'Non-debt tokenized economies' },
+    { label: 'Technology Protocol', href: '/modules/technology', description: 'SCEP-integrated tech stack' },
+    { label: 'Transport Protocol', href: '/modules/transport', description: 'Decentralized movement systems' },
   ];
 
   const isActiveLink = (href: string) => {
@@ -83,7 +93,7 @@ const Header: React.FC = () => {
               {/* Desktop Navigation */}
               <nav className="hidden lg:flex items-center space-x-1">
                 {/* Primary Navigation Items */}
-                {navItems.slice(0, 6).map((item) => (
+                {navItems.map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
@@ -97,17 +107,21 @@ const Header: React.FC = () => {
                   </Link>
                 ))}
 
-                {/* More Dropdown */}
+                {/* Modules Dropdown */}
                 <div className="relative">
                   <button
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    onBlur={() => setTimeout(() => setIsDropdownOpen(false), 200)}
-                    className="px-4 py-2 rounded-lg text-gray hover:text-ink hover:bg-ink/5 transition-all duration-200 text-sm font-medium flex items-center gap-2"
+                    onClick={() => setIsModulesOpen(!isModulesOpen)}
+                    onBlur={() => setTimeout(() => setIsModulesOpen(false), 200)}
+                    className={`px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium flex items-center gap-2 ${
+                      pathname?.startsWith('/modules')
+                        ? 'text-ink bg-gradient-to-r from-accent/10 to-signal/10 border border-accent/20'
+                        : 'text-gray hover:text-ink hover:bg-ink/5'
+                    }`}
                   >
-                    More
+                    Modules
                     <svg
                       className={`w-4 h-4 transition-transform duration-200 ${
-                        isDropdownOpen ? 'rotate-180' : ''
+                        isModulesOpen ? 'rotate-180' : ''
                       }`}
                       fill="none"
                       stroke="currentColor"
@@ -122,12 +136,12 @@ const Header: React.FC = () => {
                     </svg>
                   </button>
 
-                  {/* Dropdown Menu */}
-                  {isDropdownOpen && (
-                    <div className="absolute top-full right-0 mt-2 w-64 py-2 z-50">
+                  {/* Modules Dropdown Menu */}
+                  {isModulesOpen && (
+                    <div className="absolute top-full left-0 mt-2 w-80 py-2 z-50">
                       <GlassmorphicCard blur="lg" opacity={0.1} borderGlow>
                         <div className="max-h-96 overflow-y-auto">
-                          {navItems.slice(6).map((item) => (
+                          {moduleItems.map((item) => (
                             <Link
                               key={item.label}
                               href={item.href}
@@ -136,6 +150,7 @@ const Header: React.FC = () => {
                                   ? 'text-ink bg-gradient-to-r from-accent/5 to-signal/5 border-l-2 border-accent'
                                   : 'text-gray hover:text-ink'
                               }`}
+                              onClick={() => setIsModulesOpen(false)}
                             >
                               <div className="font-medium text-sm">{item.label}</div>
                               {item.description && (
@@ -150,6 +165,21 @@ const Header: React.FC = () => {
                     </div>
                   )}
                 </div>
+
+                {/* Protocol Links */}
+                {protocolItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className={`px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium ${
+                      isActiveLink(item.href)
+                        ? 'text-ink bg-gradient-to-r from-accent/10 to-signal/10 border border-accent/20'
+                        : 'text-gray hover:text-ink hover:bg-ink/5 border border-transparent'
+                    }`}
+                  >
+                    {item.label.replace(' Protocol', '')}
+                  </Link>
+                ))}
                 
                 {/* Glossary Search */}
                 <div className="ml-4">
@@ -200,6 +230,7 @@ const Header: React.FC = () => {
       >
         <div className="pt-24 px-4 pb-8 h-full overflow-y-auto">
           <div className="space-y-2 max-w-lg mx-auto">
+            {/* Main Navigation */}
             {navItems.map((item, index) => (
               <Link
                 key={item.label}
@@ -251,6 +282,118 @@ const Header: React.FC = () => {
                 </GlassmorphicCard>
               </Link>
             ))}
+            
+            {/* Modules Section */}
+            <div className="pt-4 pb-2">
+              <h3 className="text-gray font-semibold text-sm px-4 pb-2">Modules</h3>
+              {moduleItems.map((item, index) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block"
+                  style={{ animationDelay: `${(navItems.length + index) * 30}ms` }}
+                >
+                  <GlassmorphicCard
+                    blur="sm"
+                    opacity={0.05}
+                    className={`p-3 mb-1 transition-all duration-200 ${
+                      isActiveLink(item.href)
+                        ? 'border-accent/50 bg-accent/5'
+                        : 'hover:border-accent/30'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div
+                          className={`font-medium text-sm ${
+                            isActiveLink(item.href) ? 'text-ink' : 'text-gray'
+                          }`}
+                        >
+                          {item.label}
+                        </div>
+                        {item.description && (
+                          <div className="text-xs text-gray/60 mt-1">
+                            {item.description}
+                          </div>
+                        )}
+                      </div>
+                      <svg
+                        className={`w-4 h-4 transition-colors ${
+                          isActiveLink(item.href) ? 'text-accent' : 'text-gray/30'
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                  </GlassmorphicCard>
+                </Link>
+              ))}
+            </div>
+            
+            {/* Protocols Section */}
+            <div className="pt-4 pb-2">
+              <h3 className="text-gray font-semibold text-sm px-4 pb-2">Protocols</h3>
+              {protocolItems.map((item, index) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block"
+                  style={{ animationDelay: `${(navItems.length + moduleItems.length + index) * 30}ms` }}
+                >
+                  <GlassmorphicCard
+                    blur="sm"
+                    opacity={0.05}
+                    className={`p-3 mb-1 transition-all duration-200 ${
+                      isActiveLink(item.href)
+                        ? 'border-accent/50 bg-accent/5'
+                        : 'hover:border-accent/30'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div
+                          className={`font-medium text-sm ${
+                            isActiveLink(item.href) ? 'text-ink' : 'text-gray'
+                          }`}
+                        >
+                          {item.label}
+                        </div>
+                        {item.description && (
+                          <div className="text-xs text-gray/60 mt-1">
+                            {item.description}
+                          </div>
+                        )}
+                      </div>
+                      <svg
+                        className={`w-4 h-4 transition-colors ${
+                          isActiveLink(item.href) ? 'text-accent' : 'text-gray/30'
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                  </GlassmorphicCard>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
