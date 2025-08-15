@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGlossary } from '@/contexts/GlossaryContext';
 import { FaInfoCircle, FaExternalLinkAlt } from 'react-icons/fa';
@@ -47,6 +48,13 @@ export const GlossaryTooltip: React.FC<GlossaryTooltipProps> = ({
   const handleMouseEnter = () => setIsOpen(true);
   const handleMouseLeave = () => setIsOpen(false);
 
+  // Portal rendering
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
   return (
     <>
       <span className="relative inline-block">
@@ -62,31 +70,29 @@ export const GlossaryTooltip: React.FC<GlossaryTooltipProps> = ({
         </span>
       </span>
       
-      <AnimatePresence>
-        {isOpen && (
-          <div className="fixed inset-0 z-[9999] pointer-events-none">
-            <motion.div
-              ref={tooltipRef}
-              initial={{ opacity: 0, scale: 0.9, y: position === 'top' ? 10 : -10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: position === 'top' ? 10 : -10 }}
-              transition={{ duration: 0.2 }}
-              className="pointer-events-auto"
-              style={{
-                position: 'absolute',
-                top: triggerRef.current ? 
-                  (position === 'top' 
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isOpen && triggerRef.current && (
+            <div className="fixed inset-0 z-[9999] pointer-events-none">
+              <motion.div
+                ref={tooltipRef}
+                initial={{ opacity: 0, scale: 0.9, y: position === 'top' ? 10 : -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: position === 'top' ? 10 : -10 }}
+                transition={{ duration: 0.2 }}
+                className="pointer-events-auto absolute"
+                style={{
+                  top: position === 'top' 
                     ? triggerRef.current.getBoundingClientRect().top - 8
-                    : triggerRef.current.getBoundingClientRect().bottom + 8
-                  ) : 0,
-                left: triggerRef.current ? triggerRef.current.getBoundingClientRect().left + (triggerRef.current.getBoundingClientRect().width / 2) : 0,
-                transform: position === 'top' ? 'translate(-50%, -100%)' : 'translate(-50%, 0)',
-                width: '20rem',
-                maxWidth: '90vw'
-              }}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
+                    : triggerRef.current.getBoundingClientRect().bottom + 8,
+                  left: triggerRef.current.getBoundingClientRect().left + (triggerRef.current.getBoundingClientRect().width / 2),
+                  transform: position === 'top' ? 'translate(-50%, -100%)' : 'translate(-50%, 0)',
+                  width: '20rem',
+                  maxWidth: '90vw'
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
               <div className="bg-gray-900/95 backdrop-blur-xl p-4 rounded-lg border border-amber-500/30 shadow-2xl">
                 <div className="flex items-start justify-between mb-2">
                   <h4 className="text-amber-400 font-semibold text-lg">
@@ -128,10 +134,12 @@ export const GlossaryTooltip: React.FC<GlossaryTooltipProps> = ({
                   <FaExternalLinkAlt className="text-xs text-gray-500" />
                 </div>
               </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 };

@@ -21,31 +21,31 @@ const Footer: React.FC = () => {
     {
       title: 'Core Systems',
       links: [
-        { label: 'Energy Infrastructure', href: '/energy' },
-        { label: 'Food Sovereignty', href: '/food' },
-        { label: 'Water Management', href: '/water' },
-        { label: 'Housing Solutions', href: '/housing' },
-        { label: 'Health Services', href: '/health' },
+        { label: 'Energy Infrastructure', href: '/loop-economics/energy' },
+        { label: 'Food Sovereignty', href: '/loop-economics/food' },
+        { label: 'Water Management', href: '/loop-economics/water' },
+        { label: 'Housing Solutions', href: '/parallel-protocol#housing' },
+        { label: 'Health Services', href: '/parallel-protocol#health' },
       ],
     },
     {
       title: 'Governance',
       links: [
-        { label: 'DAO Laws', href: '/dao-laws' },
+        { label: 'DAO Laws', href: '/parallel-protocol/dao-laws' },
         { label: 'Voting System', href: '/governance#voting' },
         { label: 'Proposals', href: '/governance#proposals' },
-        { label: 'Treasury', href: '/finance#treasury' },
-        { label: 'Community Guidelines', href: '/dao-laws#guidelines' },
+        { label: 'Treasury', href: '/dao-governance#treasury' },
+        { label: 'Community Guidelines', href: '/community#guidelines' },
       ],
     },
     {
       title: 'Resources',
       links: [
         { label: 'Documentation', href: '/download' },
-        { label: 'Developer Tools', href: '/technology#tools' },
-        { label: 'Educational Materials', href: '/education#resources' },
+        { label: 'Developer Tools', href: '/download#technical' },
+        { label: 'Educational Materials', href: '/learning' },
         { label: 'Research Papers', href: '/download#research' },
-        { label: 'API Access', href: '/technology#api' },
+        { label: 'API Access', href: '/download#api' },
       ],
     },
     {
@@ -55,17 +55,17 @@ const Footer: React.FC = () => {
         { label: 'Events', href: '/culture#events' },
         { label: 'Forums', href: '/community' },
         { label: 'Support', href: '/support' },
-        { label: 'Contact', href: '/contact' },
+        { label: 'Contact', href: '/support' },
       ],
     },
   ];
 
   const operationalLinks: FooterLink[] = [
-    { label: 'Privacy Policy', href: '/privacy' },
-    { label: 'Terms of Service', href: '/terms' },
-    { label: 'Security', href: '/security-policy' },
+    { label: 'Privacy Policy', href: '/data-privacy-audits' },
+    { label: 'Terms of Service', href: '/legal-bond' },
+    { label: 'Security', href: '/parallel-protocol#security' },
     { label: 'Open Source', href: 'https://github.com/genesis-protocol', external: true },
-    { label: 'Status', href: '/status' },
+    { label: 'Status', href: '/support' },
   ];
 
   const currentYear = new Date().getFullYear();

@@ -24,7 +24,7 @@ export default function Home() {
     { 
       label: 'Loop Economics', 
       icon: <RecursionIcon size={40} />, 
-      href: '/economics',
+      href: '/loop-economics',
       description: 'Replace extractive systems with regenerative loops'
     },
     { 
@@ -78,12 +78,16 @@ export default function Home() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Link href="/why-genesis">
               <Button variant="primary" size="lg" glowEffect>
                 Join the Movement
               </Button>
+            </Link>
+            <Link href="/loop-economics">
               <Button variant="accent" size="lg">
                 Learn More
               </Button>
+            </Link>
             </div>
           </motion.div>
         </div>
@@ -187,7 +191,7 @@ export default function Home() {
                 description="Create self-sustaining economic loops that generate value through recursive patterns and community coordination."
                 action={{
                   label: "Explore Loops",
-                  onClick: () => console.log('Navigate to economics'),
+                  onClick: () => window.location.href = '/loop-economics',
                 }}
                 color="accent"
                 delay={0.1}
@@ -199,7 +203,7 @@ export default function Home() {
                 description="Participate in autonomous decision-making through distributed consensus and collective intelligence frameworks."
                 action={{
                   label: "Join Governance",
-                  onClick: () => console.log('Navigate to governance'),
+                  onClick: () => window.location.href = '/governance',
                 }}
                 color="signal"
                 delay={0.2}
@@ -211,7 +215,7 @@ export default function Home() {
                 description="Join autonomous communities working together through shared protocols and collaborative resource management."
                 action={{
                   label: "Join Network",
-                  onClick: () => console.log('Navigate to community'),
+                  onClick: () => window.location.href = '/community',
                 }}
                 color="danger"
                 delay={0.3}
@@ -223,7 +227,7 @@ export default function Home() {
                 description="Build and propagate ideas through shared cognitive patterns and emotional loops that strengthen community bonds."
                 action={{
                   label: "Explore Memetics",
-                  onClick: () => console.log('Navigate to memetics'),
+                  onClick: () => window.location.href = '/culture-memetics',
                 }}
                 color="ink"
                 delay={0.4}
@@ -235,7 +239,7 @@ export default function Home() {
                 description="Efficiently manage and distribute resources through decentralized networks and collaborative decision-making."
                 action={{
                   label: "View Resources",
-                  onClick: () => console.log('Navigate to resources'),
+                  onClick: () => window.location.href = '/download',
                 }}
                 color="accent"
                 delay={0.5}
@@ -247,7 +251,7 @@ export default function Home() {
                 description="Coordinate community responses to incidents through real-time alerts and decentralized action networks."
                 action={{
                   label: "Join Response",
-                  onClick: () => console.log('Navigate to rapid-response'),
+                  onClick: () => window.location.href = '/rapid-response',
                 }}
                 color="signal"
                 delay={0.6}

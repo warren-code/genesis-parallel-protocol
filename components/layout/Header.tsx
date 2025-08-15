@@ -18,25 +18,25 @@ const Header: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const pathname = usePathname();
 
-  // 20 navigation items as requested
+  // Enhanced navigation with protocol suite
   const navItems: NavItem[] = [
     { label: 'Home', href: '/', description: 'Gateway to Genesis Protocol' },
-    { label: 'Mission', href: '/mission', description: 'Our purpose and vision' },
+    { label: 'Protocols', href: '/protocols', description: 'Six foundational protocol suite' },
     { label: 'Parallel Protocol', href: '/parallel-protocol', description: 'Complete operational framework' },
     { label: 'DAO Governance', href: '/dao-governance', description: 'Decentralized governance framework' },
     { label: 'Loop Economics', href: '/loop-economics', description: 'Regenerative economic systems' },
     { label: 'SCEP', href: '/scep', description: 'Shared Cognitive Emotional Plane' },
-    { label: 'Housing', href: '/housing', description: 'Affordable housing solutions' },
-    { label: 'Health', href: '/health', description: 'Community health infrastructure' },
-    { label: 'Education', href: '/education', description: 'Learning and knowledge systems' },
-    { label: 'Security', href: '/security', description: 'Community safety protocols' },
-    { label: 'Governance', href: '/governance', description: 'Decision-making structures' },
-    { label: 'Technology', href: '/technology', description: 'Innovation and development' },
-    { label: 'Culture', href: '/culture', description: 'Arts and cultural preservation' },
-    { label: 'Trade', href: '/trade', description: 'Economic exchange systems' },
-    { label: 'Transport', href: '/transport', description: 'Transportation infrastructure' },
-    { label: 'Waste', href: '/waste', description: 'Waste management and recycling' },
-    { label: 'Finance', href: '/finance', description: 'Financial sovereignty systems' },
+    { label: 'Transport Protocol', href: '/protocols/transport', description: 'Decentralized movement systems' },
+    { label: 'Housing Protocol', href: '/protocols/housing', description: 'DAO-managed housing infrastructure' },
+    { label: 'Finance Protocol', href: '/protocols/finance', description: 'Non-debt tokenized economies' },
+    { label: 'Technology Protocol', href: '/protocols/technology', description: 'SCEP-integrated tech stack' },
+    { label: 'Trade Protocol', href: '/protocols/trade', description: 'Transparent supply chains' },
+    { label: 'FOIA Protocol', href: '/protocols/foia', description: 'Radical transparency system' },
+    { label: 'Culture', href: '/culture-memetics', description: 'Arts and cultural preservation' },
+    { label: 'Education', href: '/learning', description: 'Learning and knowledge systems' },
+    { label: 'Health', href: '/parallel-protocol#health', description: 'Community health infrastructure' },
+    { label: 'Security', href: '/parallel-protocol#security', description: 'Community safety protocols' },
+    { label: 'Waste', href: '/loop-economics#waste', description: 'Waste management and recycling' },
     { label: 'Why Genesis', href: '/why-genesis', description: 'The need for new civilization' },
     { label: 'Compare', href: '/compare', description: 'Genesis vs traditional systems' },
     { label: 'Download', href: '/download', description: 'Resources and documentation' },
@@ -124,7 +124,7 @@ const Header: React.FC = () => {
 
                   {/* Dropdown Menu */}
                   {isDropdownOpen && (
-                    <div className="absolute top-full right-0 mt-2 w-64 py-2">
+                    <div className="absolute top-full right-0 mt-2 w-64 py-2 z-50">
                       <GlassmorphicCard blur="lg" opacity={0.1} borderGlow>
                         <div className="max-h-96 overflow-y-auto">
                           {navItems.slice(6).map((item) => (
