@@ -386,11 +386,6 @@ const CultureMemeticsPage = () => {
       </motion.section>
     </div>
   );
-
-
-import ArtistSection from '@/app/components/culture-memetics/ArtistSection';
-
-// Add the artist section
-<ArtistSection />
+};
 
 export default CultureMemeticsPage;
