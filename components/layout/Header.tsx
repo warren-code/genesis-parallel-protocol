@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -18,6 +18,26 @@ const Header: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isModulesOpen, setIsModulesOpen] = useState(false);
   const pathname = usePathname();
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add('mobile-menu-open');
+    } else {
+      document.body.classList.remove('mobile-menu-open');
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu when clicking outside or changing routes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setIsModulesOpen(false);
+  }, [pathname]);
 
   // Top-level navigation items
   const navItems: NavItem[] = [
@@ -59,7 +79,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
+      <header className="fixed top-0 left-0 right-0 z-[100] px-4 py-4">
         <GlassmorphicCard blur="xl" opacity={0.08} borderGlow className="backdrop-saturate-200">
           <div className="px-6 py-4">
             <div className="flex items-center justify-between">
@@ -107,18 +127,22 @@ const Header: React.FC = () => {
                   </Link>
                 ))}
 
-                {/* Modules Dropdown */}
+                {/* Parallel Protocols Dropdown */}
                 <div className="relative">
                   <button
                     onClick={() => setIsModulesOpen(!isModulesOpen)}
-                    onBlur={() => setTimeout(() => setIsModulesOpen(false), 200)}
+                    onMouseEnter={() => setIsModulesOpen(true)}
+                    onMouseLeave={() => {
+                      // Only close if not hovering over the dropdown itself
+                      setTimeout(() => setIsModulesOpen(false), 150);
+                    }}
                     className={`px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium flex items-center gap-2 ${
-                      pathname?.startsWith('/modules')
+                      pathname?.startsWith('/modules') || isModulesOpen
                         ? 'text-ink bg-gradient-to-r from-accent/10 to-signal/10 border border-accent/20'
                         : 'text-gray hover:text-ink hover:bg-ink/5'
                     }`}
                   >
-                    Modules
+                    Parallel Protocols
                     <svg
                       className={`w-4 h-4 transition-transform duration-200 ${
                         isModulesOpen ? 'rotate-180' : ''
@@ -136,21 +160,26 @@ const Header: React.FC = () => {
                     </svg>
                   </button>
 
-                  {/* Modules Dropdown Menu */}
+                  {/* Parallel Protocols Dropdown Menu */}
                   {isModulesOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-80 py-2 z-50">
-                      <GlassmorphicCard blur="lg" opacity={0.1} borderGlow>
-                        <div className="max-h-96 overflow-y-auto">
+                    <div 
+                      className="absolute top-full left-0 mt-2 w-80 py-2 z-[110] shadow-2xl"
+                      onMouseEnter={() => setIsModulesOpen(true)}
+                      onMouseLeave={() => setIsModulesOpen(false)}
+                    >
+                      <GlassmorphicCard blur="lg" opacity={0.15} borderGlow className="border border-accent/30">
+                        <div className="max-h-96 overflow-y-auto custom-scrollbar">
                           {moduleItems.map((item) => (
                             <Link
                               key={item.label}
                               href={item.href}
-                              className={`block px-4 py-3 transition-all duration-200 hover:bg-ink/5 ${
+                              className={`block px-4 py-3 transition-all duration-200 hover:bg-ink/10 ${
                                 isActiveLink(item.href)
-                                  ? 'text-ink bg-gradient-to-r from-accent/5 to-signal/5 border-l-2 border-accent'
+                                  ? 'text-ink bg-gradient-to-r from-accent/10 to-signal/10 border-l-2 border-accent'
                                   : 'text-gray hover:text-ink'
                               }`}
                               onClick={() => setIsModulesOpen(false)}
+                              onMouseDown={(e) => e.preventDefault()}
                             >
                               <div className="font-medium text-sm">{item.label}</div>
                               {item.description && (
@@ -190,8 +219,9 @@ const Header: React.FC = () => {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg hover:bg-ink/10 transition-all duration-200"
+                className="lg:hidden p-2 rounded-lg hover:bg-ink/10 transition-all duration-200 mobile-touch-target"
                 aria-label="Toggle navigation menu"
+                aria-expanded={isMobileMenuOpen}
               >
                 <div className="w-6 h-5 flex flex-col justify-between">
                   <span
@@ -222,7 +252,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-primary/98 backdrop-blur-2xl z-40 transition-all duration-300 lg:hidden ${
+        className={`fixed inset-0 mobile-menu-backdrop z-[90] transition-all duration-300 lg:hidden ${
           isMobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'

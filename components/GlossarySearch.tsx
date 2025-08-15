@@ -73,7 +73,7 @@ export const GlossarySearch: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full mt-2 right-0 w-96 max-w-[90vw] z-50"
+            className="absolute top-full mt-2 right-0 w-96 max-w-[calc(100vw-2rem)] sm:max-w-[90vw] z-[120]"
           >
             <div className="glassmorphic-card p-4 border border-border-glow-gold/30 shadow-xl">
               <div className="flex items-center gap-3 mb-4">

@@ -376,9 +376,47 @@ h6 {
     white-space: normal;
   }
   
-  /* Animation Utilities */
+/* Animation Utilities */
   .animate-glow {
     animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  /* Mobile-specific utilities */
+  .mobile-menu-backdrop {
+    backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(13, 15, 20, 0.95);
+  }
+  
+  /* Prevent scrolling when mobile menu is open */
+  .mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+  
+  /* Enhanced touch targets for mobile */
+  .mobile-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile-optimized text sizing */
+  .mobile-text-scale {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+  }
+  
+  /* Mobile-friendly hover states (prevent sticky hover on touch devices) */
+  @media (hover: hover) {
+    .mobile-safe-hover:hover {
+      transform: translateY(-2px);
+    }
+  }
+  
+  /* Safe area insets for mobile devices */
+  .mobile-safe-area {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
   
   @keyframes glow {

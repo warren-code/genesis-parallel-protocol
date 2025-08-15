@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MainLayout from "@/components/layout/MainLayout";
@@ -15,6 +15,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#0D0F14',
+};
+
 export const metadata: Metadata = {
   title: "Genesis Parallel Protocol - Decentralized Civilization Platform",
   description: "A parallel civilizational protocol based on loop economics, decentralized autonomous governance, and memetic structures for community coordination",
@@ -22,6 +30,11 @@ export const metadata: Metadata = {
     icon: '/golden-rings-logo.svg',
     shortcut: '/golden-rings-logo.svg',
     apple: '/golden-rings-logo.svg',
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Genesis Protocol',
   },
 };
 

@@ -27,7 +27,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
       {/* Main Content Area */}
       <main className="flex-1 relative z-10 pt-24 pb-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {children}
         </div>
       </main>

@@ -73,7 +73,7 @@ export const GlossaryTooltip: React.FC<GlossaryTooltipProps> = ({
       {mounted && createPortal(
         <AnimatePresence>
           {isOpen && triggerRef.current && (
-            <div className="fixed inset-0 z-[9999] pointer-events-none">
+            <div className="fixed inset-0 z-[130] pointer-events-none">
               <motion.div
                 ref={tooltipRef}
                 initial={{ opacity: 0, scale: 0.9, y: position === 'top' ? 10 : -10 }}
