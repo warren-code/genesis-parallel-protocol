@@ -128,14 +128,13 @@ const Header: React.FC = () => {
                 ))}
 
                 {/* Parallel Protocols Dropdown */}
-                <div className="relative">
+                <div 
+                  className="relative"
+                  onMouseEnter={() => setIsModulesOpen(true)}
+                  onMouseLeave={() => setIsModulesOpen(false)}
+                >
                   <button
                     onClick={() => setIsModulesOpen(!isModulesOpen)}
-                    onMouseEnter={() => setIsModulesOpen(true)}
-                    onMouseLeave={() => {
-                      // Only close if not hovering over the dropdown itself
-                      setTimeout(() => setIsModulesOpen(false), 150);
-                    }}
                     className={`px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium flex items-center gap-2 ${
                       pathname?.startsWith('/modules') || isModulesOpen
                         ? 'text-ink bg-gradient-to-r from-accent/10 to-signal/10 border border-accent/20'
@@ -162,12 +161,8 @@ const Header: React.FC = () => {
 
                   {/* Parallel Protocols Dropdown Menu */}
                   {isModulesOpen && (
-                    <div 
-                      className="absolute top-full left-0 mt-2 w-80 py-2 z-[110] shadow-2xl"
-                      onMouseEnter={() => setIsModulesOpen(true)}
-                      onMouseLeave={() => setIsModulesOpen(false)}
-                    >
-                      <GlassmorphicCard blur="lg" opacity={0.15} borderGlow className="border border-accent/30">
+                    <div className="absolute top-full left-0 mt-2 w-80 py-2 z-[110] shadow-2xl">
+                      <GlassmorphicCard blur="lg" opacity={0.2} borderGlow className="border border-accent/50 bg-primary/90">
                         <div className="max-h-96 overflow-y-auto custom-scrollbar">
                           {moduleItems.map((item) => (
                             <Link
@@ -179,7 +174,6 @@ const Header: React.FC = () => {
                                   : 'text-gray hover:text-ink'
                               }`}
                               onClick={() => setIsModulesOpen(false)}
-                              onMouseDown={(e) => e.preventDefault()}
                             >
                               <div className="font-medium text-sm">{item.label}</div>
                               {item.description && (

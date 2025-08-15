@@ -259,20 +259,38 @@ const CultureMemeticsPage = () => {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Listen Section */}
+            {/* Listen Section with SoundCloud Profile */}
             <div className="space-y-6">
               <div className="p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg border border-purple-500/30">
-                <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                {/* SoundCloud Profile Section */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative">
+                    {/* SoundCloud Profile Picture - using a placeholder that could be replaced with actual image */}
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center shadow-lg border-2 border-orange-400/50">
+                      <FaMusic className="text-2xl text-white" />
+                    </div>
+                    {/* Online indicator */}
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-black/50"></div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-1">EM's Operational Music</h3>
+                    <p className="text-sm text-gray-400">Genesis Protocol Artist</p>
+                  </div>
+                </div>
+                
+                <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                   <FaMusic className="text-purple-400" />
                   Operational Music Catalog
-                </h3>
-                <p className="text-gray-300 mb-4">
+                </h4>
+                <p className="text-gray-300 mb-6">
                   Each track aims to close a loop, install a cleaner schema/engine, and route energy to constructive action.
+                  This catalog is both art <em>and</em> infrastructure: cultural code that interoperates with governance, 
+                  economics, and parallel services.
                 </p>
                 <Link 
                   href="https://on.soundcloud.com/q1jny3W7lkZYRA3H32" 
                   target="_blank"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-300 transform hover:scale-105"
                 >
                   <FaPlay />
                   Listen on SoundCloud
