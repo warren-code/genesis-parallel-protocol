@@ -3,7 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GlassmorphicCard } from '@/app/components/ui';
-import { FiHome, FiUsers, FiRefreshCw, FiSettings, FiLeaf, FiDatabase } from 'react-icons/fi';
+import { FiHome, FiUsers, FiRefreshCw, FiSettings, FiDatabase } from 'react-icons/fi';
+import { FaLeaf } from 'react-icons/fa';
 
 export default function HousingProtocol() {
   const features = [
@@ -52,7 +53,7 @@ export default function HousingProtocol() {
       ]
     },
     {
-      icon: <FiLeaf className="w-8 h-8" />,
+      icon: <FaLeaf className="w-8 h-8" />,
       title: "Regenerative Design",
       description: "Biomimetic architecture and permaculture integration that enhances local ecosystems.",
       details: [
