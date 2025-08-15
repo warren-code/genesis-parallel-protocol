@@ -6,30 +6,36 @@ import { motion } from 'framer-motion';
 import GlassmorphicCard from '@/app/components/ui/GlassmorphicCard';
 import { GlossaryTooltip } from '@/components/GlossaryTooltip';
 import { 
-  FaBolt, FaSolarPanel, FaWind, FaIndustry,
-  FaLeaf, FaChartLine, FaCog
+  FaBolt, FaIndustry, FaRecycle, FaTint,
+  FaLeaf, FaChartLine, FaCog, FaTruck
 } from 'react-icons/fa';
-import { FaBatteryFull } from 'react-icons/fa';
+import { FaFlask } from 'react-icons/fa';
 
 const EnergyPage = () => {
   const energySystems = [
     {
-      title: 'Solar Grid Networks',
-      description: 'Distributed solar collection with peer-to-peer energy trading',
-      icon: FaSolarPanel,
-      features: ['Rooftop solar arrays', 'Community solar gardens', 'Energy storage systems']
+      title: 'Cotton Waste Collection',
+      description: 'Systematic collection and preprocessing of discarded cotton clothing',
+      icon: FaRecycle,
+      features: ['Textile waste sorting', 'Cotton fiber extraction', 'Community collection hubs']
     },
     {
-      title: 'Wind Generation',
-      description: 'Community-owned wind farms integrated with local grids',
-      icon: FaWind,
-      features: ['Micro wind turbines', 'Community wind cooperatives', 'Grid stabilization']
+      title: 'Hydrogen Production',
+      description: 'Advanced gasification and electrolysis for clean hydrogen fuel generation',
+      icon: FaFlask,
+      features: ['Biomass gasification', 'Steam reforming', 'Electrolytic purification']
     },
     {
-      title: 'Energy Storage',
-      description: 'Distributed battery systems for grid resilience and autonomy',
-      icon: FaBatteryFull,
-      features: ['Home battery systems', 'Community storage banks', 'Grid balancing']
+      title: 'Liquid Hydrogen Storage',
+      description: 'Cryogenic storage and distribution systems for fuel supply chains',
+      icon: FaTint,
+      features: ['Cryogenic tanks', 'Distribution networks', 'Refueling stations']
+    },
+    {
+      title: 'Supply Chain Integration',
+      description: 'End-to-end logistics for waste-to-fuel transformation',
+      icon: FaTruck,
+      features: ['Transportation logistics', 'Processing facilities', 'Fuel delivery systems']
     }
   ];
 
@@ -50,19 +56,23 @@ const EnergyPage = () => {
           </div>
           
           <p className="text-xl text-gray-300 mb-8 max-w-4xl">
-            Distributed renewable energy systems that prioritize community ownership, 
-            resilience, and environmental sustainability over centralized profit extraction.
+            Revolutionary waste-to-fuel supply chain converting discarded cotton clothing 
+            into liquid hydrogen, creating a circular economy that transforms textile waste 
+            into clean energy infrastructure.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <div className="px-4 py-2 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-300">
-              Distributed Generation
+              Waste-to-Fuel Conversion
             </div>
             <div className="px-4 py-2 rounded-full bg-green-500/20 border border-green-500/30 text-green-300">
-              Community Ownership
+              Circular Economy
             </div>
             <div className="px-4 py-2 rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300">
-              Grid Resilience
+              Clean Hydrogen
+            </div>
+            <div className="px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-300">
+              Supply Chain Innovation
             </div>
           </div>
         </GlassmorphicCard>
@@ -74,7 +84,7 @@ const EnergyPage = () => {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="mb-16"
       >
-        <h2 className="text-2xl font-bold text-white mb-6">Energy Systems</h2>
+        <h2 className="text-2xl font-bold text-white mb-6">Cotton-to-Hydrogen Supply Chain</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
           {energySystems.map((system, index) => (

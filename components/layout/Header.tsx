@@ -127,67 +127,6 @@ const Header: React.FC = () => {
                   </Link>
                 ))}
 
-                {/* Parallel Protocols Dropdown */}
-                <div 
-                  className="relative"
-                  onMouseEnter={() => setIsModulesOpen(true)}
-                  onMouseLeave={() => setIsModulesOpen(false)}
-                >
-                  <button
-                    onClick={() => setIsModulesOpen(!isModulesOpen)}
-                    className={`px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium flex items-center gap-2 ${
-                      pathname?.startsWith('/modules') || isModulesOpen
-                        ? 'text-ink bg-gradient-to-r from-accent/10 to-signal/10 border border-accent/20'
-                        : 'text-gray hover:text-ink hover:bg-ink/5'
-                    }`}
-                  >
-                    Parallel Protocols
-                    <svg
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        isModulesOpen ? 'rotate-180' : ''
-                      }`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </button>
-
-                  {/* Parallel Protocols Dropdown Menu */}
-                  {isModulesOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-80 py-2 z-[110] shadow-2xl">
-                      <GlassmorphicCard blur="lg" opacity={0.2} borderGlow className="border border-accent/50 bg-primary/90">
-                        <div className="max-h-96 overflow-y-auto custom-scrollbar">
-                          {moduleItems.map((item) => (
-                            <Link
-                              key={item.label}
-                              href={item.href}
-                              className={`block px-4 py-3 transition-all duration-200 hover:bg-ink/10 ${
-                                isActiveLink(item.href)
-                                  ? 'text-ink bg-gradient-to-r from-accent/10 to-signal/10 border-l-2 border-accent'
-                                  : 'text-gray hover:text-ink'
-                              }`}
-                              onClick={() => setIsModulesOpen(false)}
-                            >
-                              <div className="font-medium text-sm">{item.label}</div>
-                              {item.description && (
-                                <div className="text-xs text-gray/70 mt-1">
-                                  {item.description}
-                                </div>
-                              )}
-                            </Link>
-                          ))}
-                        </div>
-                      </GlassmorphicCard>
-                    </div>
-                  )}
-                </div>
 
                 {/* Protocol Links */}
                 {protocolItems.map((item) => (
